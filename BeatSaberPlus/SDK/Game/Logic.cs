@@ -90,9 +90,9 @@ namespace BeatSaberPlus.SDK.Game
         /// <param name="p_Next">Next scene</param>
         private static void SceneManager_activeSceneChanged(UnityEngine.SceneManagement.Scene p_Current, UnityEngine.SceneManagement.Scene p_Next)
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error($"====== [SDK.Game][Logic.SceneManager_activeSceneChanged] {p_Next.name} ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error($"====== [SDK.Game][Logic.SceneManager_activeSceneChanged] {p_Next.name} ======");
+//#endif
 
             try
             {
@@ -137,9 +137,9 @@ namespace BeatSaberPlus.SDK.Game
         /// </summary>
         private static void OnMenuSceneActive()
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnMenuSceneActive] ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnMenuSceneActive] ======");
+//#endif
             try
             {
                 ActiveScene = SceneType.Menu;
@@ -165,9 +165,9 @@ namespace BeatSaberPlus.SDK.Game
         /// <param name="p_Object">Transition object</param>
         private static void OnMenuSceneLoadedFresh(ScenesTransitionSetupDataSO p_Object, DiContainer p_DiContainer)
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnMenuSceneLoadedFresh] ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnMenuSceneLoadedFresh] ======");
+//#endif
             try
             {
                 var l_GameScenesManager = UnityEngine.Resources.FindObjectsOfTypeAll<GameScenesManager>().FirstOrDefault();
@@ -199,9 +199,9 @@ namespace BeatSaberPlus.SDK.Game
         /// </summary>
         private static void OnGameSceneActive()
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnGameSceneActive] ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.OnGameSceneActive] ======");
+//#endif
             try
             {
                 ActiveScene             = SceneType.Playing;
@@ -217,9 +217,9 @@ namespace BeatSaberPlus.SDK.Game
                 {
                     LevelData.IsReplay = m_WasInReplay;
 
-#if DEBUG
-                    ChatPlexSDK.Logger?.Error($"====== [SDK.Game][Logic.OnGameSceneActive] OnLevelStarted ======");
-#endif
+//#if DEBUG
+//                    ChatPlexSDK.Logger?.Error($"====== [SDK.Game][Logic.OnGameSceneActive] OnLevelStarted ======");
+//#endif
 
                     if (OnLevelStarted != null)
                         OnLevelStarted.Invoke(LevelData);
@@ -237,9 +237,9 @@ namespace BeatSaberPlus.SDK.Game
         /// <param name="p_LevelData">Level data</param>
         internal static void FireLevelStarted(LevelData p_LevelData)
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.FireLevelStarted] ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.FireLevelStarted] ======");
+//#endif
             LevelData = p_LevelData;
         }
         /// <summary>
@@ -248,9 +248,9 @@ namespace BeatSaberPlus.SDK.Game
         /// <param name="p_LevelCompletionData">Level completion data</param>
         internal static void FireLevelEnded(LevelCompletionData p_LevelCompletionData)
         {
-#if DEBUG
-            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.FireLevelEnded] ======");
-#endif
+//#if DEBUG
+//            ChatPlexSDK.Logger?.Error("====== [SDK.Game][Logic.FireLevelEnded] ======");
+//#endif
             LevelCompletionData             = p_LevelCompletionData;
             LevelCompletionData.IsReplay    = m_WasInReplay;
         }

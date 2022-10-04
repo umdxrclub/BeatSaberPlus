@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿using CP_SDK.Logging;
+using CP_SDK_WebSocketSharp;
+using CP_SDK_WebSocketSharp.Net;
+using System.Diagnostics;
+using System.IO;
+using UnityEngine;
 
 namespace BeatSaberPlus.SDK.Game
 {
@@ -15,6 +20,10 @@ namespace BeatSaberPlus.SDK.Game
         /// User name cache
         /// </summary>
         private static string m_UserName = null;
+        /// <summary>
+        /// The actual user name cache
+        /// </summary>
+        private static string m_ActualUserName = null;
 
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////
@@ -38,10 +47,26 @@ namespace BeatSaberPlus.SDK.Game
         /// <returns></returns>
         public static string GetUserName()
         {
+
             if (m_UserName != null)
                 return m_UserName;
 
-            FetchPlatformInfos();
+            CP_SDK.ChatPlexSDK.Logger.Info("The current working directory is " + Directory.GetCurrentDirectory());
+            if (File.Exists("./displayname.txt"))
+            {
+                var lines = File.ReadAllLines("./displayname.txt");
+                if (lines.Length > 0)
+                {
+                    m_UserName = lines[0];
+                }
+            }
+
+            // File could not be read
+            if (m_UserName == null)
+            {
+                FetchPlatformInfos();
+                m_UserName = m_ActualUserName;
+            }
 
             return m_UserName;
         }
@@ -72,7 +97,7 @@ namespace BeatSaberPlus.SDK.Game
                     if (!string.IsNullOrEmpty(l_PlayerID))
                     {
                         m_UserID    = l_PlayerID;
-                        m_UserName  = l_Task.Result.userName;
+                        m_ActualUserName  = l_Task.Result.userName;
                         return;
                     }
                 }
